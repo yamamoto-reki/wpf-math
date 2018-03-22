@@ -40,6 +40,7 @@ namespace WpfMath
 
         protected override Box CreateBoxCore(TexEnvironment environment)
         {
+            Atom.Source = Source;
             return this.Atom.CreateBox(environment);
         }
 
