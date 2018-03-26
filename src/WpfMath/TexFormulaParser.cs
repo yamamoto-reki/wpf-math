@@ -605,6 +605,9 @@ namespace WpfMath
                 if (atom is BigOperatorAtom)
                 {
                     var typedAtom = (BigOperatorAtom)atom;
+                    if (typedAtom.BaseAtom != null && typedAtom.BaseAtom.Source == null)
+                        typedAtom.BaseAtom.Source = atom.Source;
+
                     return new BigOperatorAtom(typedAtom.BaseAtom, subscriptAtom, superscriptAtom,
                         typedAtom.UseVerticalLimits);
                 }
