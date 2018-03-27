@@ -130,6 +130,10 @@ namespace WpfMath
 
         protected override Box CreateBoxCore(TexEnvironment environment)
         {
+            if (BaseAtom.Source?.Source != Source?.Source)
+            {
+                BaseAtom.Source = Source;
+            }
             // Create box for base atom.
             var baseBox = this.BaseAtom == null ? StrutBox.Empty : this.BaseAtom.CreateBox(environment);
 
@@ -139,12 +143,20 @@ namespace WpfMath
 
             if (this.OverAtom != null)
             {
+                if (OverAtom.Source?.Source != Source?.Source)
+                {
+                    OverAtom.Source = Source;
+                }
                 overBox = OverAtom.CreateBox(OverScriptSmaller ? environment.GetSubscriptStyle() : environment);
                 maxWidth = Math.Max(maxWidth, overBox.Width);
             }
 
             if (this.UnderAtom != null)
             {
+                if (UnderAtom.Source?.Source != Source?.Source)
+                {
+                    UnderAtom.Source = Source;
+                }
                 underBox = UnderAtom.CreateBox(UnderScriptSmaller ? environment.GetSubscriptStyle() : environment);
                 maxWidth = Math.Max(maxWidth, underBox.Width);
             }
